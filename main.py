@@ -209,9 +209,9 @@ class CountriesData(Database):
     """Exercise 4 (4): Queries"""
 
     def display_information_on_population_density(self) -> dict:
-        query = """SELECT DISTINCT ON ("Pop. Density (per sq. mi.)") "Country", "Pop. Density (per sq. mi.)" \
+        query = """SELECT AVG(MAX("Pop. Density (per sq. mi.)")), "Region" \
                         FROM countries_data
-                        GROUP BY "Country", "Pop. Density (per sq. mi.)";"""
+                        GROUP BY "Region";"""
         self.cur.execute(query)
         data = self.sort_fetch(self.cur.fetchall())
         return data
